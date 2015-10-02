@@ -1,19 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zakioussama.treemerger;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Level;
+
 import org.apache.log4j.Logger;
 
 /**
- *
+ * Repository class, represent a set of file to be processed
+ * 
  * @author Oussama Zaki
  */
 public class Repository {
@@ -22,24 +18,42 @@ public class Repository {
 
     private Set<File> files;
 
+    /**
+     * Default Constructor, initiliaze en empty set
+     * 
+     */
     public Repository() {
         files = new HashSet<>();
     }
     
+    /**
+     * Constructor with a list of paths
+     * 
+     * @param paths array of strings 
+     */
     public Repository(final String[] paths) {
         files = new HashSet<>();
-
+        
         for (String file : paths) {
                 this.addFile(file);
         }
     }
 
+    /**
+     * get the site of files
+     * 
+     * @return Set<this.class>
+     */
     public Set<File> getFiles() {
         return files;
     }
     
     
-
+    /**
+     * add a file to the set
+     * 
+     * @param path the file path
+     */
     public final void addFile(final String path){
         try {
             File f = new File(path);
@@ -51,6 +65,11 @@ public class Repository {
         }
     }
     
+    /**
+     * return the number of files in the set
+     * 
+     * @return int
+     */
     public int size(){
         return files.size();
     }

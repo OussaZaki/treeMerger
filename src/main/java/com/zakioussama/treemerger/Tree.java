@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zakioussama.treemerger;
 
 import java.io.BufferedReader;
@@ -11,10 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.util.Collections;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -30,11 +27,21 @@ public class Tree {
 
     SortedMap<String, Integer> tree;
 
+    /**
+     * Constructor
+     *
+     */
     public Tree() {
         SortedMap<String, Integer> map = new TreeMap<>();
         this.tree = (SortedMap) Collections.synchronizedSortedMap(map);
     }
 
+    /**
+     * merge a file in a tree
+     *
+     * @param file
+     * @throws java.lang.Exception
+     */
     public void process(File file) throws Exception {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -83,7 +90,12 @@ public class Tree {
             throw new Exception("File is broken");
         }
     }
-
+    
+    /**
+     * convert the tree to a string
+     *
+     * @return a string
+     */
     @Override
     public String toString() {
         String res = "";
@@ -93,6 +105,12 @@ public class Tree {
         return res;
     }
 
+    /**
+     * print the tree in a file
+     *
+     * @param path
+     * @throws java.io.FileNotFoundException
+     */
     public void toFile(String path) throws FileNotFoundException {
         File file = new File(path);
         try (PrintWriter printWriter = new PrintWriter(file)) {
